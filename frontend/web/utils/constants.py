@@ -69,11 +69,12 @@ API_KEYS = [
 # 지원되는 프로바이더
 PROVIDERS = [
     "Anthropic",
-    "OpenAI", 
+    "OpenAI",
     "DeepSeek",
     "Gemini",
     "Groq",
-    "Ollama"
+    "Ollama",
+    "OpenRouter",
 ]
 
 # 터미널 명령어 정리 프리픽스
