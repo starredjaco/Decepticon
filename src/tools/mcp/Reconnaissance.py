@@ -1,4 +1,3 @@
-# weather_server.py
 from mcp.server.fastmcp import FastMCP
 from typing_extensions import Annotated
 from typing import List, Optional, Union
@@ -56,7 +55,11 @@ def command_execution(command: Annotated[str, "Commands to run on Kali Linux"]) 
         if result.returncode != 0:
             return f"[-] Command execution error: {result.stderr.strip()}"
         
-        return f"{result.stdout.strip()}"
+        output = result.stdout.strip()
+        MAX_CHARS = 50000
+        if len(output) > MAX_CHARS:
+            output = output[:MAX_CHARS] + f"\n\n[... OUTPUT TRUNCATED — {len(result.stdout.strip())} chars total, showing first {MAX_CHARS} ...]"
+        return output
     
     except FileNotFoundError:
         return "[-] Docker command not found. Is Docker installed and in PATH?"
